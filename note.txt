@@ -88,3 +88,9 @@ This is super relevant to your project because your course descriptions already 
 uniqid → temporary course IDs before MongoDB saves them
 
 quill → course description editor for instructors
+
+Node.js/Express webhook controller used to sync users from Clerk authentication to your MongoDB database using Mongoose.
+svix
+-- svix is a webhook verification library.
+-- Clerk uses Svix to send webhook events securely.
+-- Webhook verifies that the request really came from Clerk.

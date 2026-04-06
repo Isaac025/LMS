@@ -94,3 +94,33 @@ svix
 -- svix is a webhook verification library.
 -- Clerk uses Svix to send webhook events securely.
 -- Webhook verifies that the request really came from Clerk.
+
+//const { clerkClient } = require("@clerk/express");
+This gives you access to Clerk backend SDK, which lets you:
+1. update users
+2. manage metadata
+3. fetch user data
+
+await clerkClient.users.updateUserMetadata(userId, {
+  publicMetadata: {
+    role: "educator",
+  },
+}); // It updates the user's public metadata in Clerk:
+
+{
+  "publicMetadata": {
+    "role": "educator"
+  }
+}
+
+why publicMetadata?
+clerk has 3 types
+| Type            | Access                 |
+| --------------- | ---------------------- |
+| publicMetadata  | accessible on frontend |
+| privateMetadata | backend only           |
+| unsafeMetadata  | client-writable        |
+
+const { requireAuth } = require("@clerk/express");
+
+router.patch("/update-role", requireAuth(), updateRoleToEducator);
